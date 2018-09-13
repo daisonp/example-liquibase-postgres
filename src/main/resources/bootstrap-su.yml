@@ -1,0 +1,14 @@
+---
+spring:
+  profiles: local 
+  liquibase:
+    change-log: classpath:database/liquibase-su-changelog.xml
+    url: jdbc:postgresql://localhost:5432/liquibase_test?createDatabaseIfNotExist=true
+    user: pgsys
+    password: pass
+    parameters:
+      owner_name: ${application.schema}
+      owner_password: pass
+      user_name: ${application.schema}_user
+      user_password: pass
+

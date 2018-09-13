@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+         
+
+	<changeSet author="Richard Parry" id="01-roles-001">
+		<sql dbms="postgresql" endDelimiter=";">
+			CREATE ROLE ${owner_name} WITH PASSWORD '${owner_password}' LOGIN
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-002">
+		<sql dbms="postgresql" endDelimiter=";">
+			CREATE ROLE ${user_name} WITH PASSWORD '${user_password}' LOGIN
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-003">
+		<sql dbms="postgresql" endDelimiter=";">
+			ALTER ROLE ${owner_name} SET search_path TO "$user"
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-004">
+		<sql dbms="postgresql" endDelimiter=";">
+			ALTER ROLE ${user_name} SET search_path TO ${owner_name}
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-005">
+		<sql dbms="postgresql" endDelimiter=";">
+			GRANT CREATE ON DATABASE liquibase_test TO ${owner_name}
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-005">
+		<sql dbms="postgresql" endDelimiter=";">
+			GRANT CREATE ON DATABASE liquibase_test TO ${owner_name}
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-006">
+		<sql dbms="postgresql" endDelimiter=";">
+			CREATE SCHEMA AUTHORIZATION ${owner_name}
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-007">
+		<sql dbms="postgresql" endDelimiter=";">
+			GRANT USAGE ON SCHEMA  ${owner_name} TO  ${user_name}
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Richard Parry" id="01-roles-007">
+		<sql dbms="postgresql" endDelimiter=";">
+			GRANT USAGE ON SCHEMA  ${owner_name} TO  ${user_name}
+		</sql>
+	</changeSet>
+
+
+</databaseChangeLog>
